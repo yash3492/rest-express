@@ -54,7 +54,8 @@ module.exports = (app, config) => {
 
     // Bind routes only when all needful middleware binding is done
     try {
-        let routes = require('./routes')(app, config);
+        const databaseInstance = require('./db-interface')(config);
+        let routes = require('./routes')(app, config, databaseInstance);
 
         // Registering Routes
         app.use(routes);
