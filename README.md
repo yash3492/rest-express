@@ -7,6 +7,7 @@
 + install dependencies via `npm install`
 + Create `.env` file by copying content from `.env.sample`
 + Start dev server via `npm run dev` to run server in watch mode.
++ Run Unit Test Cases via `npm run test`.
 + happy coding..
 
 #### Production server
