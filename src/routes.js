@@ -8,7 +8,7 @@ module.exports = (app, CONFIG) => {
     const { HomeController } = require('./controllers')(CONFIG);
 
     router.get('/', HomeController.index);
-    router.get('/test', HomeController.test);
+    router.post('/test', HomeController.test);
 
     return router;
 };

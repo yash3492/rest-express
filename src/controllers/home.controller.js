@@ -10,6 +10,7 @@ module.exports = (CONFIG) => {
         // Status check route
         index: (req, res, next) => {
             res.send({
+                success: true,
                 now: (Date.now()),
             });
         },
@@ -26,7 +27,9 @@ module.exports = (CONFIG) => {
             console.log('Log after await');
             res.send({
                 valid: true,
-                data
+                data,
+                num1: req.body.num1,
+                num2: req.body.num2,
             });
         }
     };
