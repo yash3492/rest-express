@@ -15,7 +15,7 @@ describe('Rest API unit tests', function () {
         //this.timeout(10000);
         // calling status api
         server
-          .get('/')
+          .get('/status')
           .expect('Content-type', /json/)
           .expect(200) // THis is HTTP response
           // .then(response => {

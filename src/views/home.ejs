@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title> Products </title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="/main.css" rel="stylesheet" type="text/css"/>
+</head>
+<body class="bg-light">
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h1>My Products</h1>
+        <p class="lead">Below is an example for products listing, with support for adding product.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <form class="form-inline" method="post" action="/products">
+                <input class="form-control mx-md-2" type="text" name="name" placeholder="Add new product..." required autocomplete="off"/>
+                <input class="form-control mx-2" type="text" name="description" placeholder="Add Description..." required autocomplete="off"/>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <% (products || []).forEach(function(product){ %>
+                    <tr>
+                        <th scope="row"><%= product.id %></th>
+                        <td><%= product.name %></td>
+                        <td><%= product.description %></td>
+                    </tr>
+                <% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+<% include partials/footer.ejs %>
+</body>
+</html>

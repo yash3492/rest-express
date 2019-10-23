@@ -16,12 +16,9 @@ module.exports = sequelize => {
               //type: Sequelize.UUID,
               //defaultValue: Sequelize.UUIDV4
           },
-          productKey: {
-              type: Sequelize.STRING,
-          },
           isActive: {
               type: Sequelize.BOOLEAN,
-              defaultValue: false,
+              defaultValue: true,
           },
           name: {
               type: Sequelize.STRING,

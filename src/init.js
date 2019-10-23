@@ -3,10 +3,12 @@
  * @Date: 01-Jul-19, Mon
  **/
 
+const path = require('path');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const express = require('express');
 const helmet = require('helmet');
 
 module.exports = (app, config) => {
@@ -18,6 +20,15 @@ module.exports = (app, config) => {
 
     // Enabling CORS
     app.use(cors());
+
+    //set up template engine
+    app.set('view engine', 'ejs');
+    app.set('views', path.join(__dirname, '/views'));
+    app.locals.copy_right_year = (new Date()).getFullYear();
+
+
+    //static files
+    app.use(express.static('./public'));
     // Allowing proxy IP
     app.set('trust proxy', true);
     // Serving static contents,
@@ -43,7 +54,7 @@ module.exports = (app, config) => {
     let limit = (config.REQUEST_BODY_SIZE_LIMIT || '100kb');
 
     // parse application/x-www-form-urlencoded
-    //app.use(bodyParser.urlencoded({extended: false}));               //      required for using req.body or req.params
+    app.use(bodyParser.urlencoded({extended: false}));               //      required for using req.body or req.params
 
     // parse application/json
     app.use(bodyParser.json({ limit }));
