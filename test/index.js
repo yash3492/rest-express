@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const should = require('should');
 
 // This agent refers to PORT where program is running.
-const appInstance = require('./../src')({DB_URI:'postgres://postgres:root@localhost:5432/test-db'});
+const appInstance = require('./../src')({DB_URI: process.env.DB_URI || 'postgres://postgres:root@localhost:5432/test-db'});
 
 const server = supertest.agent(appInstance);
 
