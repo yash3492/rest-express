@@ -2,7 +2,7 @@ const supertest = require('supertest');
 const should = require('should');
 
 // This agent refers to PORT where program is running.
-const appInstance = require('./../src')();
+const appInstance = require('./../src')({DB_URI:'postgres://postgres:root@localhost:5432/test-db'});
 
 const server = supertest.agent(appInstance);
 
@@ -43,6 +43,20 @@ describe('Rest API unit tests', function () {
               // res.body.error.should.equal(undefined);
               res.body.num1.should.equal(10);
               res.body.num2.should.equal(20);
+              done();
+          });
+    });
+
+    it('should return 200 ok for home page', function (done) {
+
+        this.timeout(10000);
+        //calling GET Home page
+        server
+          .get('/')
+          .expect('Content-type', /html/)
+          .expect(200)
+          .end(function (err, res) {
+              res.status.should.equal(200);
               done();
           });
     });
